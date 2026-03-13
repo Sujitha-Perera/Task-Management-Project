@@ -89,10 +89,10 @@ jwt.expiration=86400000
 
 The following software must be installed:
 
-Java 17 or later
-Node.js 18 or later
-MySQL Server
-Maven
+Java 17 or later,
+Node.js 18 or later,
+MySQL Server,
+Maven,
 
 ## Steps to Run the Backend Application
 
