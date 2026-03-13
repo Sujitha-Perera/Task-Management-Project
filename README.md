@@ -1,5 +1,11 @@
 # Mini Task Management System
 
+Frontend Repository:
+https://github.com/Sujitha-Perera/Task-Management-Frontend
+
+Backend Repository:
+https://github.com/Sujitha-Perera/Task-Management-Backend
+
 ## Project Overview
 
 The Mini Task Management System is a full-stack web application that allows users to manage tasks efficiently. The system supports user authentication, task creation, updating, deletion, filtering, sorting, and pagination. It is designed as a simple but complete task management application suitable for demonstrating full-stack development skills.
