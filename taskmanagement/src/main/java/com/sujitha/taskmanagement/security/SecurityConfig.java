@@ -13,11 +13,10 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-<<<<<<< HEAD
+
 import com.sujitha.taskmanagement.security.JwtAuthenticationFilter;
 
-=======
->>>>>>> 97d995b822f26d7fecf83857f5fb9b70a7162b14
+
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
@@ -33,7 +32,6 @@ public class SecurityConfig {
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
                 http
-<<<<<<< HEAD
                         .cors(withDefaults())
                         .csrf(AbstractHttpConfigurer::disable)
 
@@ -70,7 +68,6 @@ public class SecurityConfig {
 
                         // JWT filter before authentication filter
                         .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-=======
                                 .cors(withDefaults())
                                 .csrf(AbstractHttpConfigurer::disable)
                                 .authorizeHttpRequests(auth -> auth
@@ -83,7 +80,6 @@ public class SecurityConfig {
                                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                                 .authenticationProvider(authenticationProvider)
                                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
->>>>>>> 97d995b822f26d7fecf83857f5fb9b70a7162b14
 
                 return http.build();
         }
