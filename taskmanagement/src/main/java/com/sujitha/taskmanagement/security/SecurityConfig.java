@@ -13,10 +13,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-
-import com.sujitha.taskmanagement.security.JwtAuthenticationFilter;
-
-
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
@@ -25,62 +21,50 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-        private final JwtAuthenticationFilter jwtAuthFilter;
-        private final AuthenticationProvider authenticationProvider;
+    private final JwtAuthenticationFilter jwtAuthFilter;
+    private final AuthenticationProvider authenticationProvider;
 
-        @Bean
-        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-                http
-                        .cors(withDefaults())
-                        .csrf(AbstractHttpConfigurer::disable)
+        http
+                .cors(withDefaults())
+                .csrf(AbstractHttpConfigurer::disable)
 
-                        .authorizeHttpRequests(auth -> auth
+                .authorizeHttpRequests(auth -> auth
 
-                                // Allow preflight requests (important for CORS)
-                                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        // Allow preflight requests
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
-                                // Public authentication APIs
-                                .requestMatchers("/api/auth/**").permitAll()
+                        // Public authentication APIs
+                        .requestMatchers("/api/auth/**").permitAll()
 
-                                // Swagger documentation access
-                                .requestMatchers(
-                                        "/swagger-ui/**",
-                                        "/swagger-ui.html",
-                                        "/v3/api-docs/**"
-                                ).permitAll()
+                        // Swagger
+                        .requestMatchers(
+                                "/swagger-ui/**",
+                                "/swagger-ui.html",
+                                "/v3/api-docs/**"
+                        ).permitAll()
 
-                                // Admin APIs
-                                .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                        // Admin endpoints
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
 
-                                // Task APIs require login
-                                .requestMatchers("/api/tasks/**").authenticated()
+                        // Task APIs require authentication
+                        .requestMatchers("/api/tasks/**").authenticated()
 
-                                // Any other request must be authenticated
-                                .anyRequest().authenticated()
-                        )
+                        // Any other request
+                        .anyRequest().authenticated()
+                )
 
-                        .sessionManagement(session ->
-                                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                        )
+                .sessionManagement(session ->
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
 
-                        .authenticationProvider(authenticationProvider)
+                .authenticationProvider(authenticationProvider)
 
-                        // JWT filter before authentication filter
-                        .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-                                .cors(withDefaults())
-                                .csrf(AbstractHttpConfigurer::disable)
-                                .authorizeHttpRequests(auth -> auth
-                                                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                                                .requestMatchers("/api/auth/**").permitAll()
-                                                .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                                                .requestMatchers("/api/tasks/**").authenticated()
-                                                .anyRequest().authenticated())
-                                .sessionManagement(session -> session
-                                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                                .authenticationProvider(authenticationProvider)
-                                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+                // JWT filter
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
-                return http.build();
-        }
+        return http.build();
+    }
 }
