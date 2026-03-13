@@ -38,20 +38,20 @@ This project demonstrates practical implementation of REST API development, auth
 
 ### Backend
 
-Java
-Spring Boot
-Spring Security
-Spring Data JPA
-JWT Authentication
-Maven
+Java,
+Spring Boot,
+Spring Security,
+Spring Data JPA,
+JWT Authentication,
+Maven,
 MySQL
 
 ### Frontend
 
-Next.js
-React
-Axios
-TailwindCSS
+Next.js,
+React,
+Axios,
+TailwindCSS,
 
 ### Database
 
@@ -59,20 +59,28 @@ MySQL
 
 ## Database Configuration and JWT configuration
 
-spring.application.name=taskmanagement
+spring.application.name=taskmanagement,
 
-spring.datasource.url=jdbc:mysql://localhost:3307/taskdb
-spring.datasource.username=root
-spring.datasource.password=123456
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-spring.jpa.properties.hibernate.format_sql=true
+spring.datasource.url=jdbc:mysql://localhost:3307/taskdb,
 
-server.port=8080
+spring.datasource.username=root,
 
-jwt.secret=VGhpc0lzQVN1cGVyU2VjdXJlSldUU2lnbmluZ0tleUZvclNwcmluZ0Jvb3Q=
+spring.datasource.password=123456,
+
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver,
+
+spring.jpa.hibernate.ddl-auto=update,
+
+spring.jpa.show-sql=true,
+
+spring.jpa.properties.hibernate.format_sql=true,
+
+server.port=8080,
+
+
+jwt.secret=VGhpc0lzQVN1cGVyU2VjdXJlSldUU2lnbmluZ0tleUZvclNwcmluZ0Jvb3Q=,
+
 jwt.expiration=86400000
 
 ## Setup Instructions
@@ -118,14 +126,14 @@ The frontend application will start on:http://localhost:3000
 
 After login, the user can:
 
-Create new tasks
-View tasks
-Edit tasks
-Delete tasks
-Mark tasks as completed
-Filter tasks by status or priority
-Sort tasks by due date or priority
-Navigate tasks using pagination
+Create new tasks,
+View tasks,
+Edit tasks,
+Delete tasks,
+Mark tasks as completed,
+Filter tasks by status or priority,
+Sort tasks by due date or priority,
+Navigate tasks using pagination,
 
 ---
 
